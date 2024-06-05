@@ -11,12 +11,17 @@
 
     <artifactId>route-console</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-bom</artifactId>
+                <version>${camel.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -31,6 +36,7 @@
             <artifactId>camel-stream</artifactId>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -38,6 +44,8 @@
                 <artifactId>camel-maven-plugin</artifactId>
                 <version>${camel.version}</version>
                 <configuration>
+                    <logClasspath>true</logClasspath>
+                    <loggingLevel>INFO</loggingLevel>
                     <mainClass>com.gbm.camel.RouteToConsoleApplication</mainClass>
                 </configuration>
             </plugin>

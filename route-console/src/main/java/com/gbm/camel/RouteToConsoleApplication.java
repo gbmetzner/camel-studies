@@ -14,7 +14,7 @@ public class RouteToConsoleApplication
 		try ( var configure = main.configure() )
 		{
 			configure.addLambdaRouteBuilder(
-					rb -> rb.from( "stream://in?promptMessage=What should I repeat? " )
+					rb -> rb.from( "stream://in?promptMessage=What should I repeat?: " )
 							.process( exchange -> exchange.getIn().setBody( "You said: " + exchange.getIn().getBody( String.class ) ) )
 							.to( "stream://out" ) );
 			main.run( args );
