@@ -12,13 +12,11 @@ import java.util.List;
  * then becomes the new body of the exchange.
  */
 @Component
-public class AddressUpdateLineToCustomerMapper
-{
+public class AddressUpdateLineToCustomerMapper {
 
-	public Customer process( List<String> addressRow )
-	{
-		return new Customer( Integer.parseInt( addressRow.get( 0 ) ), addressRow.get( 1 ), addressRow.get( 2 ), addressRow.get( 3 ),
-				addressRow.get( 4 ), addressRow.get( 5 ) );
-	}
+    public Customer process(List<String> addressRow) {
+        return new Customer(Integer.parseInt(addressRow.get(0)), addressRow.get(1), addressRow.get(2), addressRow.get(3),
+                addressRow.get(4), addressRow.get(5));
+    }
 
 }
