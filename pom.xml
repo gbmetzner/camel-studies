@@ -11,7 +11,7 @@
 
     <modules>
         <module>route-console</module>
-        <module>route-etl</module>
+        <module>springboot-camel</module>
     </modules>
 
     <properties>
