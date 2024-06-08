@@ -1,7 +1,7 @@
-package com.gbm.camel.processor;
+package com.gbm.springbootcamel.processor;
 
-import com.gbm.camel.common.InvalidCustomerAddressException;
-import com.gbm.camel.model.Customer;
+import com.gbm.springbootcamel.common.InvalidCustomerAddressException;
+import com.gbm.springbootcamel.model.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

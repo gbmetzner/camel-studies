@@ -1,4 +1,4 @@
-package com.gbm.camel.config;
+package com.gbm.springbootcamel.config;
 
 import org.apache.camel.model.dataformat.CsvDataFormat;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.gbm.camel.common;
+package com.gbm.springbootcamel.common;
 
 public class InvalidCustomerAddressException extends Exception
 {

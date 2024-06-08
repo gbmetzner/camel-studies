@@ -1,6 +1,6 @@
-package com.gbm.camel.api;
+package com.gbm.springbootcamel.api;
 
-import com.gbm.camel.model.Customer;
+import com.gbm.springbootcamel.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

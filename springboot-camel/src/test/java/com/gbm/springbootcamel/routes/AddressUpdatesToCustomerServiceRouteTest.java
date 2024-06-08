@@ -1,6 +1,6 @@
-package com.gbm.camel.routes;
+package com.gbm.springbootcamel.routes;
 
-import com.gbm.camel.config.AppConfig;
+import com.gbm.springbootcamel.config.AppConfig;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.file.GenericFile;
@@ -19,7 +19,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import static com.gbm.camel.routes.AddressUpdatesToCustomerServiceRoute.ROUTE_ID;
+import static com.gbm.springbootcamel.routes.AddressUpdatesToCustomerServiceRoute.ROUTE_ID;
 import static org.apache.camel.builder.AdviceWith.adviceWith;
 
 @CamelSpringBootTest

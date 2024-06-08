@@ -12,6 +12,7 @@
     <modules>
         <module>route-console</module>
         <module>springboot-camel</module>
+        <module>rabbitmq-camel</module>
     </modules>
 
     <properties>
@@ -20,6 +21,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>3.2.6</spring.boot.version>
         <camel.version>4.6.0</camel.version>
+        <spring.boot.camel.version>3.0.0-RC3</spring.boot.camel.version>
+        <lombok.version>1.18.32</lombok.version>
     </properties>
 
     <build>

@@ -1,4 +1,4 @@
-package com.gbm.camel;
+package com.gbm.springbootcamel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

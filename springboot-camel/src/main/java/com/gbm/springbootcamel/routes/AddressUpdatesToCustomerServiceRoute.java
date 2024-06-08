@@ -1,7 +1,7 @@
-package com.gbm.camel.routes;
+package com.gbm.springbootcamel.routes;
 
-import com.gbm.camel.common.InvalidCustomerAddressException;
-import com.gbm.camel.processor.AddressUpdateLineToCustomerMapper;
+import com.gbm.springbootcamel.common.InvalidCustomerAddressException;
+import com.gbm.springbootcamel.processor.AddressUpdateLineToCustomerMapper;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.file.GenericFileOperationFailedException;

@@ -1,4 +1,4 @@
-package com.gbm.camel;
+package com.gbm.springbootcamel;
 
 import org.apache.camel.main.Main;
 

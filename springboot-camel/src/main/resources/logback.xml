@@ -13,5 +13,5 @@
     <logger name="org.springframework.transaction" level="warn" />
     <logger name="org.springframework.web" level="warn" />
     <logger name="org.springframework.test" level="warn" />
-    <logger name="com.gbm.camel" level="debug" />
+    <logger name="com.gbm.springbootcamel" level="debug" />
 </configuration>

@@ -46,7 +46,7 @@
                 <configuration>
                     <logClasspath>true</logClasspath>
                     <loggingLevel>INFO</loggingLevel>
-                    <mainClass>com.gbm.camel.RouteToConsoleApplication</mainClass>
+                    <mainClass>com.gbm.springbootcamel.RouteToConsoleApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

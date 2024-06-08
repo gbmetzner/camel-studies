@@ -1,11 +1,9 @@
-package com.gbm.camel.routes.processor;
+package com.gbm.springbootcamel.routes.processor;
 
-import com.gbm.camel.common.InvalidCustomerAddressException;
-import com.gbm.camel.processor.AddressUpdateLineToCustomerMapper;
+import com.gbm.springbootcamel.common.InvalidCustomerAddressException;
+import com.gbm.springbootcamel.processor.AddressUpdateLineToCustomerMapper;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
