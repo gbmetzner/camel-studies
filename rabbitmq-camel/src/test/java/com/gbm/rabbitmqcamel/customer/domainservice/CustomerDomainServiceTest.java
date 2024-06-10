@@ -1,6 +1,7 @@
 package com.gbm.rabbitmqcamel.customer.domainservice;
 
 
+import com.gbm.rabbitmqcamel.common.BaseTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -10,17 +11,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import static io.restassured.RestAssured.given;
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureWireMock(port = 0)
-@TestPropertySource(properties = {
-		"app.customer-integration-service.host=http://localhost:${wiremock.server.port}/customer-integration/event"
-})
-public class CustomerDomainServiceTest
+public final class CustomerDomainServiceTest extends BaseTests
 {
-
-	@LocalServerPort
-	private Integer port;
 
 	@Test
 	public void testShouldSendCreateEvent() {

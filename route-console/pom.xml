@@ -10,6 +10,9 @@
     </parent>
 
     <artifactId>route-console</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>route-console</name>
+    <description>route-console</description>
 
     <dependencyManagement>
         <dependencies>

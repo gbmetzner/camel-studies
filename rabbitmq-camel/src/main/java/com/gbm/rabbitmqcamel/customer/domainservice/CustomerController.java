@@ -1,12 +1,19 @@
 package com.gbm.rabbitmqcamel.customer.domainservice;
 
+import com.gbm.rabbitmqcamel.common.CustomerEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("customer")
@@ -47,7 +54,9 @@ public class CustomerController
 				.post()
 				.contentType( MediaType.APPLICATION_JSON )
 				.body(new CustomerEvent( 1, eventType))
-				.retrieve();
+				.retrieve().onStatus(HttpStatusCode::isError, (request, response) -> {
+					throw new ErrorResponseException(response.getStatusCode());
+				});
 
 		LOGGER.debug("Event sent successfully");
 	}
