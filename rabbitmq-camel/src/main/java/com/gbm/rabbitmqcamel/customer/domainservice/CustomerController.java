@@ -31,13 +31,13 @@ public class CustomerController
 
 	@PostMapping
 	public void createCustomer() {
-		LOGGER.debug("Request to create customer");
+		LOGGER.info("Request to create customer");
 		sendEvent( "create");
 	}
 
 	@PutMapping
 	public void updateCustomer() {
-		LOGGER.debug("Request to update customer");
+		LOGGER.info("Request to update customer");
 		sendEvent( "update");
 	}
 
@@ -48,7 +48,7 @@ public class CustomerController
 	}
 
 	private void sendEvent( String eventType) {
-		LOGGER.debug( "Sending event with type: {}", eventType );
+		LOGGER.info( "Sending event with type: {}", eventType );
 
 		customerIntegrationServiceClient
 				.post()
@@ -58,7 +58,7 @@ public class CustomerController
 					throw new ErrorResponseException(response.getStatusCode());
 				});
 
-		LOGGER.debug("Event sent successfully");
+		LOGGER.info("Event sent successfully");
 	}
 
 }

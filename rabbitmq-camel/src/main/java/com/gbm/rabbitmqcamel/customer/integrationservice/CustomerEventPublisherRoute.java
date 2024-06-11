@@ -19,8 +19,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Component
 public class CustomerEventPublisherRoute extends RouteBuilder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerEventPublisherRoute.class);
-
     private final String HOST_FULL_URL;
 
     public CustomerEventPublisherRoute(@Value("${app.customer-integration-service.host}") String hostFullUrl) {
@@ -29,6 +27,7 @@ public class CustomerEventPublisherRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+
         var url = new URL(HOST_FULL_URL);
 
         restConfiguration()
@@ -56,21 +55,21 @@ public class CustomerEventPublisherRoute extends RouteBuilder {
                 .post("/event")
                 .type(CustomerEvent.class)
                 .consumes(APPLICATION_JSON_VALUE)
-                .to("direct:sendEventToRabbitMQ")
-                .responseMessage(200,  "Request processed successfully");
+                .to("direct:sendEventToRabbitMQ");
 
         from("direct:sendEventToRabbitMQ")
                 .routeId("send-to-rabbitmq")
+                .log(LoggingLevel.INFO, "Body is: ${body.eventType}")
                 .choice()
-                    .when().simple("${body.eventType} =~ 'create'")
+                    .when(simple("${body.eventType} == 'create'"))
                         .setProperty("routingKey", constant("customer.create"))
-                    .when().simple("${body.eventType} =~ 'update'")
+                    .when(simple("${body.eventType} == 'update'"))
                         .setProperty("routingKey", constant("customer.update"))
-                    .when().simple("${body.eventType} =~ 'delete'")
+                    .when(simple("${body.eventType} == 'delete'"))
                         .setProperty("routingKey", constant("customer.delete"))
                     .otherwise()
                         .throwException(new InvalidEventTypeException("Event type is invalid"))
-                .setHeader(RabbitMQConstants.ROUTING_KEY, exchangeProperty("routingKey"))
+                .setHeader(RabbitMQConstants.ROUTING_KEY, constant("customer.delete"))
                 .marshal().json()
                 .to("rabbitmq:customer" +
                         "?connectionFactory=#rabbitConnectionFactory" +

@@ -16,7 +16,7 @@ import org.testcontainers.utility.DockerImageName;
 @Testcontainers
 public abstract class BaseTests {
 
-    static RabbitMQContainer rabbit = new RabbitMQContainer(DockerImageName.parse("rabbitmq:3.7.25-management-alpine"));
+    static RabbitMQContainer rabbit = new RabbitMQContainer(DockerImageName.parse("rabbitmq:3.13.3-management-alpine"));
 
     @LocalServerPort
     public Integer port;
@@ -33,9 +33,7 @@ public abstract class BaseTests {
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
-        registry.add("app.rabbitmq.host", () -> rabbit.getAmqpUrl());
-        registry.add("app.rabbitmq.username", () -> rabbit.getAdminUsername());
-        registry.add("app.rabbitmq.password", () -> rabbit.getAdminPassword());
+        registry.add("app.rabbitmq.uri", () -> rabbit.getAmqpUrl());
     }
 
 }
