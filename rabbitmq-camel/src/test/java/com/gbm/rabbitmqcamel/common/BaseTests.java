@@ -33,7 +33,7 @@ public abstract class BaseTests {
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
-        registry.add("app.rabbitmq.uri", () -> rabbit.getAmqpUrl());
+        registry.add("app.rabbitmq.uri", () -> String.format("amqp://guest:guest@localhost:%s", rabbit.getAmqpPort()) );
     }
 
 }

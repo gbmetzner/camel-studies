@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("sales")
-public class SalesController
-{
-    private static final Logger LOGGER =        LoggerFactory.getLogger(SalesController.class);
+public class SalesController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SalesController.class);
 
     @PostMapping("/customer")
-    public void processCustomerEvent(        @RequestBody CustomerEvent customerEvent    ) {
-		LOGGER.info( "Received customer event: {}", customerEvent );
+    public void processCustomerEvent(@RequestBody CustomerEvent customerEvent) {
+        LOGGER.info("Received customer event: {}", customerEvent);
     }
 
 }

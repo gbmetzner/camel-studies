@@ -5,15 +5,13 @@ import com.gbm.rabbitmqcamel.common.CustomerEvent;
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.rabbitmq.RabbitMQConstants;
 import org.apache.camel.model.rest.RestBindingMode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
 
+import static org.apache.camel.component.springrabbit.SpringRabbitMQConstants.ROUTING_KEY;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Component
@@ -61,21 +59,19 @@ public class CustomerEventPublisherRoute extends RouteBuilder {
                 .routeId("send-to-rabbitmq")
                 .log(LoggingLevel.INFO, "Body is: ${body.eventType}")
                 .choice()
-                    .when(simple("${body.eventType} == 'create'"))
-                        .setProperty("routingKey", constant("customer.create"))
-                    .when(simple("${body.eventType} == 'update'"))
-                        .setProperty("routingKey", constant("customer.update"))
-                    .when(simple("${body.eventType} == 'delete'"))
-                        .setProperty("routingKey", constant("customer.delete"))
-                    .otherwise()
-                        .throwException(new InvalidEventTypeException("Event type is invalid"))
-                .setHeader(RabbitMQConstants.ROUTING_KEY, constant("customer.delete"))
+                .when().simple("${body.eventType} =~ 'create'")
+                .setProperty("routingKey", constant("customer.create"))
+                .when().simple("${body.eventType} =~ 'update'")
+                .setProperty("routingKey", constant("customer.update"))
+                .when().simple("${body.eventType} =~ 'delete'")
+                .setProperty("routingKey", constant("customer.delete"))
+                .otherwise()
+                .throwException(new InvalidEventTypeException("Event type is invalid"))
+                .end()
+                .setHeader(ROUTING_KEY, exchangeProperty("routingKey"))
                 .marshal().json()
-                .to("rabbitmq:customer" +
-                        "?connectionFactory=#rabbitConnectionFactory" +
-                        "&autoDelete=false" +
-                        "&bridgeErrorHandler=true" +
-                        "&declare=false" +
+                .to("spring-rabbitmq:customer" +
+                        "?bridgeErrorHandler=true" +
                         "&exchangePattern=InOnly" +
                         "&exchangeType=topic"
                 );

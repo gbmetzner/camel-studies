@@ -29,28 +29,27 @@ public class AddressUpdateLineToCustomerMapperTest {
     }
 
     @Test
-    void testSuccessfulValidation() throws InvalidCustomerAddressException
-	{
+    void testSuccessfulValidation() throws InvalidCustomerAddressException {
         new AddressUpdateLineToCustomerMapper().validate(fixtureAddressRow);
     }
 
     @Test
-    void testValidationFailedScenarios()  {
+    void testValidationFailedScenarios() {
 
         var mapper = new AddressUpdateLineToCustomerMapper();
-        
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(singletonList( fixtureAddressRow.get( 0 ) )) );
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList(null, "A1", "A2", "C", "S", "P")) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(singletonList(fixtureAddressRow.get(0))));
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate( asList("INVALID", "A1", "A2", "C", "S", "P")) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList(null, "A1", "A2", "C", "S", "P")));
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate( asList("1", null, "A2", "C", "S", "P")) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList("INVALID", "A1", "A2", "C", "S", "P")));
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate( asList("1", "A1", "A2", null, "S", "P")) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList("1", null, "A2", "C", "S", "P")));
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate( asList("1", "A1", "A2", "C", null, "P")) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList("1", "A1", "A2", null, "S", "P")));
 
-        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate( asList("1", "A1", "A2", "C", "S", null)) );
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList("1", "A1", "A2", "C", null, "P")));
+
+        assertThrows(InvalidCustomerAddressException.class, () -> mapper.validate(asList("1", "A1", "A2", "C", "S", null)));
     }
 }

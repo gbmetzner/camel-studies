@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("itinerary")
-public class ItineraryController
-{
+public class ItineraryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ItineraryController.class);
 
     @PostMapping("/customer")
     public void processCustomerEvent(@RequestBody CustomerEvent customerEvent) {
-		LOGGER.info( "Received customer event: {}", customerEvent );
+        LOGGER.info("Received customer event: {}", customerEvent);
     }
 
 }
